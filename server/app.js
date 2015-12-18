@@ -32,18 +32,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //NEED TO UP DATE TO OR \\ CALL FOR LIVE VERSION ON HEROKU: !!!!!!!!!!!!!!!!
-mongoose.connect(process.env.MONGOLAB_URI ||  'mongodb://localhost:27017/consciousshopperdb');
-//var mongoURI = "mongodb://localhost:27017/consciousshopperdb";
-//
-//var mongoDB = mongoose.connect(mongoURI).connection;
-//
-//mongoDB.on('error', function(err){
-//    if(err) console.log("MONGO ERROR: ", err);
-//});
-//
-//mongoDB.once('open', function(){
-//    console.log("Connected to Mongo, meow!");
-//});
+//mongoose.connect(process.env.MONGOLAB_URI ||  'mongodb://localhost:27017/consciousshopperdb');
+
+
+var mongoURI = "mongodb://localhost:27017/consciousshopperdb";
+
+var mongoDB = mongoose.connect(mongoURI).connection;
+
+mongoDB.on('error', function(err){
+    if(err) console.log("MONGO ERROR: ", err);
+});
+
+mongoDB.once('open', function(){
+    console.log("Connected to Mongo, meow!");
+});
 app.use('/deletestores', Delete);
 app.use('/getstores', Stores);
 app.use('/contact', contact);

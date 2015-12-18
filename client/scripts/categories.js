@@ -1,6 +1,7 @@
 var parameters = {};
 
 $(document).ready(function(){
+    displayLoading();
     getCurrentLocation();
     $('#categoriesList').on('click', '.category', function(){
         var testValue = $(this).text();
@@ -42,7 +43,7 @@ var storeLocalData = function(data){
 };
 
 
-//finding the user's current lcoation
+//finding the user's current location
 
 var getCurrentLocation = function() {
     //Geolocation to get the current location
@@ -50,7 +51,7 @@ var getCurrentLocation = function() {
         navigator.geolocation.getCurrentPosition(function (position) {
             parameters.lat = parseFloat(position.coords.latitude);
             parameters.lng = parseFloat(position.coords.longitude);
-            console.log("The variable parameters: ", parameters);
+            displayCompleted();
         });
     } else {
         //Geolocation isn't supported by the browser
@@ -64,3 +65,12 @@ var getCurrentLocation = function() {
             'Error: Your browser doesn\'t support geolocation.');
     }
 };
+
+//loading spinner functions
+var displayLoading = function(){
+    $('#spin').addClass('spinner');
+}
+
+var displayCompleted = function(){
+    $('#spin').removeClass('spinner');
+}
