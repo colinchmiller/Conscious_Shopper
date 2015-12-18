@@ -4,6 +4,7 @@ var test;
 $(document).ready(function(){
     displayLoading();
 
+
     //pulling the store ids returned and stored from category search from local storage
     test = sessionStorage.getItem('store_ids');
     storeIdArray = test.split(',');
@@ -17,6 +18,7 @@ $(document).ready(function(){
 var getStores = function(){
         $.ajax({
             method: 'GET',
+
             url: '/categorylist',
             data: {"paramArray": storeIdArray},
             success: function(data){
